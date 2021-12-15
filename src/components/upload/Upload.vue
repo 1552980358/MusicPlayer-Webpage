@@ -9,7 +9,7 @@
       </div>
     </div>
     <FileList ref="fileList"></FileList>
-    <Footer ref="footer" class="footer"></Footer>
+    <Footer ref="footer" class="footer" @remove="removeFiles"></Footer>
   </div>
 </template>
 
@@ -35,6 +35,9 @@ export default {
     updateFileList(files) {
       this.fileList = files;
       this.$refs.fileList.updateFileList(files);
+    },
+    removeFiles() {
+      this.updateFileList([])
     }
   }
 }

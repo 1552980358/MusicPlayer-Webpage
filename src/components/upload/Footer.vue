@@ -2,7 +2,7 @@
   <div style="background-color: #4285F4; align-items: center; display: table; text-align: center">
     <div style="display: table-cell; vertical-align: middle; width: 100%">
       <div ref="upload" :class="mouseAboveUpload ? 'mouse-above' : 'mouse-leave'" style="width: 10%; float: right">{{ $t('upload.btn_upload') }}</div>
-      <div ref="remove" :class="mouseAboveRemove ? 'mouse-above' : 'mouse-leave'" style="width: 10%; float: right">{{ $t('upload.btn_remove') }}</div>
+      <div ref="remove" :class="mouseAboveRemove ? 'mouse-above' : 'mouse-leave'" style="width: 10%; float: right" @click="remove">{{ $t('upload.btn_remove') }}</div>
     </div>
   </div>
 </template>
@@ -14,6 +14,11 @@ export default {
     return {
       mouseAboveUpload: false,
       mouseAboveRemove: false
+    }
+  },
+  methods: {
+    remove() {
+      this.$emit('remove');
     }
   },
   mounted() {
