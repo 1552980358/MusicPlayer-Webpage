@@ -1,13 +1,16 @@
 <template>
   <div style="background-color: #4285F4; align-items: center; display: table; text-align: center">
     <div style="display: table-cell; vertical-align: middle; width: 100%">
-      <div ref="upload" :class="mouseAboveUpload ? 'mouse-above' : 'mouse-leave'" style="width: 10%; float: right">{{ $t('upload.btn_upload') }}</div>
+      <div ref="upload" :class="mouseAboveUpload ? 'mouse-above' : 'mouse-leave'" style="width: 10%; float: right" @click="upload">{{ $t('upload.btn_upload') }}</div>
       <div ref="remove" :class="mouseAboveRemove ? 'mouse-above' : 'mouse-leave'" style="width: 10%; float: right" @click="remove">{{ $t('upload.btn_remove') }}</div>
     </div>
   </div>
 </template>
 
 <script>
+
+import axios from 'axios';
+
 export default {
   name: "Footer",
   data() {
@@ -17,6 +20,31 @@ export default {
     }
   },
   methods: {
+    upload() {
+      this.$emit('upload')
+    },
+    uploadFile(files) {
+      const host = window.location.origin;
+      console.log('Host: ' + host);
+      let url, formData, headers;
+      let failedFile = [];
+      files.forEach(file => {
+        console.log('=========================================');
+        console.log('Upload File: ' + file.name);
+        url = host + '/upload?fileName=' + file.name;
+        console.log('Target URL: ' + url);
+        formData = new FormData();
+        formData.append('file', file);
+        headers = {'Content-Type': 'multipart/form-data'};
+        axios.post(url, formData, {headers}).then(response => {
+          console.log('Response status: ' + response.status);
+        }).catch((error) => {
+          failedFile.push(file);
+          console.log('Upload exception caught: ' + error);
+        });
+      });
+      this.$emit('updateFailedFile', failedFile);
+    },
     remove() {
       this.$emit('remove');
     }
