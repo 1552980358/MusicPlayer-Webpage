@@ -22,13 +22,13 @@ export default {
   },
   methods: {
     calculateSize(size) {
-      var tmpSize = size;
-      var count = 0;
-      while (tmpSize > 1024) {
-        tmpSize /= 1024;
+      if (size < 1024) {
+        return size + ' B';
+      }
+      let tmpSize = size;
+      let count = 1;
+      while ((tmpSize /= 1024) > 1024) {
         count++;
-        console.log(tmpSize);
-        console.log(count);
       }
       return (tmpSize).toFixed(2) + ' ' + this.SIZE_UNITS[count];
     }
