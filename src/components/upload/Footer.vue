@@ -80,6 +80,15 @@ export default {
 <!--suppress CssUnusedSymbol -->
 <style scoped>
 
+div {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .mouse-leave {
   background-color: #4285F4;
   color: white;
