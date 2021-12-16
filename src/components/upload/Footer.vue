@@ -26,6 +26,9 @@ export default {
       this.$emit('upload')
     },
     uploadFile(files) {
+      if (files.length === 0) {
+        return;
+      }
       const host = window.location.origin;
       console.log('Host: ' + host);
       let url, formData, headers;
