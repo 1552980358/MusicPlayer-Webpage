@@ -3,7 +3,7 @@
     <div style="display: table-cell; vertical-align: middle; width: 100%">
       <div ref="upload" :class="mouseAboveUpload ? 'mouse-above' : 'mouse-leave'" style="width: 10%; float: right" @click="upload">{{ $t('upload.btn_upload') }}</div>
       <div ref="remove" :class="mouseAboveRemove ? 'mouse-above' : 'mouse-leave'" style="width: 10%; float: right" @click="remove">{{ $t('upload.btn_remove') }}</div>
-      <div style="width: 50%; float: left">{{ uploadText }}</div>
+      <div style="width: 50%; float: left; color: white">{{ uploadText }}</div>
     </div>
   </div>
 </template>
