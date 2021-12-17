@@ -31,26 +31,37 @@ export default {
       }
       const host = window.location.origin;
       console.log('Host: ' + host);
-      let url, formData, headers;
-      let failedFile = [];
+
+      let url, formData, headers, text, percnet;
+      headers = {
+        'Content-Type': 'multipart/form-data',
+        'Access-Control-Allow-Origin': host,
+        'Access-Control-Allow-Methods': 'POST,GET,OPTIONS',
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Max-Age': '0'
+      };
       files.forEach((file, index) => {
-        this.uploadText = 'Upload (' + (index + 1) + '/' + files.length + '): ' + file.name;
+        text = 'Upload (' + (index + 1) + '/' + files.length + '): ' + file.name;
+        this.uploadText = text + ' [0%]';
         console.log('=========================================');
         console.log('Upload File: ' + file.name);
-        url = host + '/upload?fileName=' + file.name;
+        url = '/upload?fileName=' + file.name;
         console.log('Target URL: ' + url);
         formData = new FormData();
         formData.append('file', file);
-        headers = {'Content-Type': 'multipart/form-data'};
-        axios.post(url, formData, {headers}).then(response => {
-          console.log('Response status: ' + response.status);
-        }).catch((error) => {
-          failedFile.push(file);
-          console.log('Upload exception caught: ' + error);
+        console.log('Upload ' + file.name + ':')
+        axios({
+          url: url,
+          method: 'POST',
+          headers: headers,
+          data: formData,
+          onUploadProgress: progressEvent => {
+            percnet = (progressEvent.loaded * 100 / progressEvent.total) + '%';
+            console.log('=>' + percnet);
+            this.uploadText = text + ' [' + percnet + ']';
+          }
         });
       });
-      this.$emit('updateFailedFile', failedFile);
-      this.uploadText = 'Upload process ended.'
     },
     remove() {
       this.$emit('remove');
