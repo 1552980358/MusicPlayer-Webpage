@@ -101,6 +101,7 @@ export default {
 div {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
+  /*noinspection CssUnknownProperty*/
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
