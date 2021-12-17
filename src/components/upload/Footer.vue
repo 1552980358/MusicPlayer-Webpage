@@ -32,7 +32,7 @@ export default {
       const host = window.location.origin;
       console.log('Host: ' + host);
 
-      let url, formData, headers, text, percnet;
+      let url, formData, headers, text, percent;
       headers = {
         'Content-Type': 'multipart/form-data',
         'Access-Control-Allow-Origin': host,
@@ -56,9 +56,9 @@ export default {
           headers: headers,
           data: formData,
           onUploadProgress: progressEvent => {
-            percnet = (progressEvent.loaded * 100 / progressEvent.total) + '%';
-            console.log('=>' + percnet);
-            this.uploadText = text + ' [' + percnet + ']';
+            percent = (progressEvent.loaded * 100 / progressEvent.total) + '%';
+            console.log('=>' + percent);
+            this.uploadText = text + ' [' + percent + ']';
           }
         });
       });
