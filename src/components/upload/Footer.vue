@@ -32,7 +32,7 @@ export default {
       const host = window.location.origin;
       console.log('Host: ' + host);
 
-      let url, formData, headers, text, percent;
+      let url, formData, headers, text, percent, failedFile = [];
       headers = {
         'Content-Type': 'multipart/form-data',
         'Access-Control-Allow-Origin': host,
@@ -49,7 +49,6 @@ export default {
         console.log('Target URL: ' + url);
         formData = new FormData();
         formData.append('file', file);
-        console.log('Upload ' + file.name + ':')
         axios({
           url: url,
           method: 'POST',
@@ -57,11 +56,17 @@ export default {
           data: formData,
           onUploadProgress: progressEvent => {
             percent = (progressEvent.loaded * 100 / progressEvent.total) + '%';
-            console.log('=>' + percent);
+            console.log('Upload \'' + file.name + '\' => ' + percent);
             this.uploadText = text + ' [' + percent + ']';
           }
-        });
+        }).then(response => {
+          console.log('Upload \'' + file.name + '\' with response code ' + response.status);
+        }).catch(exception => {
+          console.log('Upload \'' + file.name + '\' with exception: ' + exception);
+          failedFile.push(file);
+        })
       });
+      this.$emit('updateFailedFile', failedFile);
     },
     remove() {
       this.$emit('remove');
