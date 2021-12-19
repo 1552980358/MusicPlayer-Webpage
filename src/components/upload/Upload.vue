@@ -3,9 +3,11 @@
     <DropFile @dropFiles='updateFileList'></DropFile>
     <div style="height: 50px; width: 100%; align-items: center; display: table; text-align: center">
       <div style="display: table-cell; vertical-align: middle; width: 100%">
-        <div style="width: 15%; float: left">{{ $t('app.div_file_seq') }}</div>
-        <div style="width: 70%; float: left">{{ $t('app.div_file_name') }}</div>
+        <div style="width: 10%; float: left">{{ $t('app.div_file_seq') }}</div>
+        <div style="width: 60%; float: left">{{ $t('app.div_file_name') }}</div>
         <div style="width: 15%; float: left">{{ $t('app.div_file_size') }}</div>
+        <div style="width: 10%; float: left">{{ $t('app.div_file_status') }}</div>
+        <div style="width: 5%; float: left">{{ $t('app.div_file_progress') }}</div>
       </div>
     </div>
     <FileList ref="fileList"></FileList>

@@ -1,9 +1,11 @@
 <template>
   <div ref="div-file" style="height: 50px; width: 100%; align-items: center; display: table; text-align: center" :class="mouseAbove ? 'mouse-above' : 'mouse-leave'">
     <div style="display: table-cell; vertical-align: middle; width: 100%">
-      <div style="width: 15%; float: left">{{ index + 1 }}</div>
-      <div style="width: 70%; float: left">{{ f.name }}</div>
+      <div style="width: 10%; float: left">{{ index + 1 }}</div>
+      <div style="width: 60%; float: left">{{ f.name }}</div>
       <div style="width: 15%; float: left">{{ calculateSize(f.size) }}</div>
+      <div style="width: 10%; float: left">{{ $t(f.status === 0 ? 'app.progress_waiting' : f.status === 1 ? 'upload.progress_uploading' : f.status === 2 ? 'app.progress_completed' : 'app.progress_failed') }}</div>
+      <div style="width: 5%; float: left">{{ f.upload + '%' }}</div>
     </div>
   </div>
 </template>

@@ -44,7 +44,7 @@ export default {
         url = '/upload?fileName=' + file.name;
         console.log('Target URL: ' + url);
         formData = new FormData();
-        formData.append('file', file);
+        formData.append('file', file.file);
         axios({
           url: url,
           method: 'POST',
@@ -53,11 +53,15 @@ export default {
           onUploadProgress: progressEvent => {
             percent = (progressEvent.loaded * 100 / progressEvent.total);
             console.log('Upload \'' + file.name + '\' => ' + percent + '%');
+            file.status = 1;
+            file.upload = percent;
           }
         }).then(response => {
           console.log('Upload \'' + file.name + '\' with response code ' + response.status);
+          file.status = 2;
         }).catch(exception => {
           console.log('Upload \'' + file.name + '\' with exception: ' + exception);
+          file.status = -1;
         })
       });
     },

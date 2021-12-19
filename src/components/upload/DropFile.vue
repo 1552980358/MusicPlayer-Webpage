@@ -29,7 +29,13 @@ export default {
               exists = true;
           })
           if (!exists) {
-            this.fileList.push(file);
+            this.fileList.push({
+              file: file,
+              name: file.name,
+              size: file.size,
+              upload: 0,
+              status: 0
+            });
           } else {
             console.log('File \'' + file.name + '\' exists, ignored.');
           }
@@ -55,7 +61,13 @@ export default {
             exists = true;
         })
         if (!exists) {
-          this.fileList.push(file);
+          this.fileList.push({
+            file: file,
+            name: file.name,
+            size: file.size,
+            upload: 0,
+            status: 0
+          });
         } else {
           console.log('File \'' + file.name + '\' exists, ignored.');
         }
