@@ -9,7 +9,7 @@
       </div>
     </div>
     <FileList ref="fileList"></FileList>
-    <Footer ref="footer" class="footer" @remove="removeFiles" @upload="upload" @updateFailedFile="updateFileList"></Footer>
+    <Footer ref="footer" class="footer" @remove="removeFiles" @upload="upload"></Footer>
   </div>
 </template>
 

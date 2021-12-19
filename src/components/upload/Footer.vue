@@ -3,7 +3,6 @@
     <div style="display: table-cell; vertical-align: middle; width: 100%">
       <div ref="upload" :class="mouseAboveUpload ? 'mouse-above' : 'mouse-leave'" style="width: 10%; float: right" @click="upload">{{ $t('upload.btn_upload') }}</div>
       <div ref="remove" :class="mouseAboveRemove ? 'mouse-above' : 'mouse-leave'" style="width: 10%; float: right" @click="remove">{{ $t('upload.btn_remove') }}</div>
-      <div style="width: 50%; float: left; color: white">{{ uploadText }}</div>
     </div>
   </div>
 </template>
@@ -18,7 +17,6 @@ export default {
     return {
       mouseAboveUpload: false,
       mouseAboveRemove: false,
-      uploadText: ''
     }
   },
   methods: {
@@ -32,7 +30,7 @@ export default {
       const host = window.location.origin;
       console.log('Host: ' + host);
 
-      let url, formData, headers, text, percent, failedFile = [];
+      let url, formData, headers, text, percent; //, failedFile = [];
       headers = {
         'Content-Type': 'multipart/form-data',
         'Access-Control-Allow-Origin': host,
@@ -63,10 +61,8 @@ export default {
           console.log('Upload \'' + file.name + '\' with response code ' + response.status);
         }).catch(exception => {
           console.log('Upload \'' + file.name + '\' with exception: ' + exception);
-          failedFile.push(file);
         })
       });
-      this.$emit('updateFailedFile', failedFile);
     },
     remove() {
       this.$emit('remove');
