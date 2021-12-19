@@ -30,7 +30,7 @@ export default {
       const host = window.location.origin;
       console.log('Host: ' + host);
 
-      let url, formData, headers, text, percent; //, failedFile = [];
+      let url, formData, headers, percent; //, failedFile = [];
       headers = {
         'Content-Type': 'multipart/form-data',
         'Access-Control-Allow-Origin': host,
@@ -38,9 +38,7 @@ export default {
         'Access-Control-Allow-Headers': '*',
         'Access-Control-Max-Age': '0'
       };
-      files.forEach((file, index) => {
-        text = 'Upload (' + (index + 1) + '/' + files.length + '): ' + file.name;
-        this.uploadText = text + ' [0%]';
+      files.forEach(file => {
         console.log('=========================================');
         console.log('Upload File: ' + file.name);
         url = '/upload?fileName=' + file.name;
@@ -53,9 +51,8 @@ export default {
           headers: headers,
           data: formData,
           onUploadProgress: progressEvent => {
-            percent = (progressEvent.loaded * 100 / progressEvent.total) + '%';
-            console.log('Upload \'' + file.name + '\' => ' + percent);
-            this.uploadText = text + ' [' + percent + ']';
+            percent = (progressEvent.loaded * 100 / progressEvent.total);
+            console.log('Upload \'' + file.name + '\' => ' + percent + '%');
           }
         }).then(response => {
           console.log('Upload \'' + file.name + '\' with response code ' + response.status);
