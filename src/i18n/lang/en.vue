@@ -19,6 +19,12 @@ module.exports = {
     'btn_upload': 'Upload',
     'btn_remove': 'Remove All',
     'progress_uploading': 'Uploading',
+  },
+
+  download: {
+    'div_name': 'Name',
+    'div_duration': 'Duration',
+    'progress_downloading': 'Downloading',
   }
 
 }

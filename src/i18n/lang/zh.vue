@@ -19,6 +19,12 @@ module.exports = {
     'btn_upload': '上传',
     'btn_remove': '删除全部',
     'progress_uploading': '上传中',
+  },
+
+  download: {
+    'div_name': '歌曲',
+    'div_duration': '时长',
+    'progress_downloading': '下载中',
   }
 
 }
