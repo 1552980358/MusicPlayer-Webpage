@@ -30,7 +30,7 @@
       </div>
 
       <div style="height: 60px; float: left; display: table; vertical-align: middle; width: 10%; align-items: center;">
-        <div style="display: table-cell; vertical-align: middle">{{ $t(a.status === 0 ? 'app.progress_waiting' : f.status === 1 ? 'download.progress_downloading' : f.status === 2 ? 'app.progress_completed' : 'app.progress_failed') }}</div>
+        <div style="display: table-cell; vertical-align: middle">{{ $t(a.status === 0 ? 'app.progress_waiting' : a.status === 1 ? 'download.progress_downloading' : a.status === 2 ? 'app.progress_completed' : 'app.progress_failed') }}</div>
       </div>
 
       <div style="height: 60px; float: left; display: table; vertical-align: middle; width: 10%; align-items: center;">
@@ -101,18 +101,32 @@ export default {
         url: '/download?id=' + this.audio.id,
         headers: headers,
         responseType: 'blob',
+        onDownloadProgress: e => {
+          this.audio.status = 1;
+          const percentage = (e.loaded * 100 / e.total).toFixed(0);
+          console.log('Download ' + this.audio.title + ' => ' + percentage + '%');
+          this.audio.download = percentage;
+        }
       }).then(res => {
+        this.audio.status = 2;
+
         const { data, headers } = res
         let ext = String(headers['Content-Type']).replace('audio/', '.');
+        const fileName = this.audio.artist + ' - ' + this.audio.title + ext;
         let url = window.URL.createObjectURL(new Blob([data], {type: headers['content-type']}));
         let dom = document.createElement('a');
         dom.href = url;
-        dom.download = this.audio.artist + ' - ' + this.audio.title + ext;
+        dom.download = fileName;
         dom.style.display = 'none';
         document.body.appendChild(dom);
         dom.click();
         dom.parentNode.removeChild(dom);
         window.URL.revokeObjectURL(url);
+
+        console.log('Download ' + this.audio.title + ' with response code: ' + res.status);
+      }).catch(e => {
+        console.log('Download ' + this.audio.title + ' with exception: ' + e);
+        this.audio.status = -1;
       });
     }
   },
