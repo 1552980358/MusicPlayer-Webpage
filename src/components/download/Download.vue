@@ -1,5 +1,14 @@
 <template>
-  <div>
+  <div style="width: 100%">
+    <div style="height: 50%; width: 100%; align-items: center; display: table; text-align: center">
+      <div style="display: table-cell; vertical-align: middle; width: 100%">
+        <div style="width: 50%; float: left">{{ $t('download.div_name') }}</div>
+        <div style="width: 10%; float: left">{{ $t('download.div_duration') }}</div>
+        <div style="width: 15%; float: left">{{ $t('app.div_file_size') }}</div>
+        <div style="width: 10%; float: left">{{ $t('app.div_file_status') }}</div>
+        <div style="width: 10%; float: left">{{ $t('app.div_file_progress') }}</div>
+      </div>
+    </div>
     <div v-for="audio in audioList" :key="audio.id">
       <Audio :a="audio"></Audio>
     </div>
@@ -41,6 +50,8 @@ export default {
           albumId: jsonObject['albumId'],
           duration: jsonObject['duration'],
           size: jsonObject['size'],
+          status: 0,
+          download: 0
         });
       })
     })
