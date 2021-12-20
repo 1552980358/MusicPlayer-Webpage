@@ -1,7 +1,7 @@
 <template>
   <div ref="div-audio" style="height: 60px" :class="mouseAbove ? 'mouse-above' : 'mouse-leave'" @click="download">
     <!--suppress HtmlRequiredAltAttribute -->
-    <img ref="img" style="height: 40px; width: 40px; float: left; margin: 10px 10px 10px 10px" :src="'/require?type=art&audio=' + this.audio.id + '&album=' + this.audio.albumId">
+    <img ref="img" style="height: 40px; width: 40px; float: left; margin: 10px 10px 10px 10px" :src="imgSrc">
     <div style="height: 60px; float: left; display: table">
       <div style="display: table-cell; vertical-align: middle; align-items: center">
         <div>{{ a.title }}</div>
@@ -21,7 +21,8 @@ export default {
   data() {
     return {
       audio: null,
-      mouseAbove: false
+      mouseAbove: false,
+      imgSrc: null
     }
   },
   methods: {
@@ -56,6 +57,9 @@ export default {
   },
   mounted() {
     this.audio = this.a;
+    this.imgSrc = '/require?type=art&audio=' + this.a.id + '&album=' + this.a.albumId;
+  },
+  updated() {
     const divAudio = this.$refs["div-audio"];
     divAudio.addEventListener('mouseover', e => {
       e.stopPropagation();
@@ -72,6 +76,7 @@ export default {
 
 </script>
 
+<!--suppress CssUnusedSymbol -->
 <style scoped>
 
 .mouse-above {
