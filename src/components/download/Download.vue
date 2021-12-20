@@ -1,6 +1,6 @@
 <template>
   <div style="width: 100%">
-    <div style="height: 50%; width: 100%; align-items: center; display: table; text-align: center">
+    <div style="height: 50px; width: 100%; align-items: center; display: table; text-align: center">
       <div style="display: table-cell; vertical-align: middle; width: 100%">
         <div style="width: 50%; float: left">{{ $t('download.div_name') }}</div>
         <div style="width: 10%; float: left">{{ $t('download.div_duration') }}</div>

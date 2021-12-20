@@ -1,7 +1,7 @@
 <template>
   <div ref="div-audio" style="height: 60px; width: 100%; align-items: center; display: table; text-align: center" :class="mouseAbove ? 'mouse-above' : 'mouse-leave'" @click="download">
 
-    <div style="display: table-cell; vertical-align: middle; width: 100%">
+    <div style="height: 100%; display: table-cell; vertical-align: middle; width: 100%">
       <div style="width: 50%; float: left">
 
         <!--suppress HtmlRequiredAltAttribute -->
@@ -20,13 +20,22 @@
 
       </div>
 
-      <div style="width: 10%; float: left">{{ calculateDuration(a.duration) }}</div>
 
-      <div style="width: 15%; float: left">{{ calculateSize(a.size) }}</div>
+      <div style="height: 60px; float: left; display: table; vertical-align: middle; width: 10%; align-items: center;">
+        <div style="display: table-cell; vertical-align: middle">{{ calculateDuration(a.duration) }}</div>
+      </div>
 
-      <div style="width: 10%; float: left">{{ $t(a.status === 0 ? 'app.progress_waiting' : f.status === 1 ? 'download.progress_downloading' : f.status === 2 ? 'app.progress_completed' : 'app.progress_failed') }}</div>
+      <div style="height: 60px; float: left; display: table; vertical-align: middle; width: 15%; align-items: center;">
+        <div style="display: table-cell; vertical-align: middle">{{ calculateSize(a.size) }}</div>
+      </div>
 
-      <div style="width: 10%; float: left">{{ a.download + '%' }}</div>
+      <div style="height: 60px; float: left; display: table; vertical-align: middle; width: 10%; align-items: center;">
+        <div style="display: table-cell; vertical-align: middle">{{ $t(a.status === 0 ? 'app.progress_waiting' : f.status === 1 ? 'download.progress_downloading' : f.status === 2 ? 'app.progress_completed' : 'app.progress_failed') }}</div>
+      </div>
+
+      <div style="height: 60px; float: left; display: table; vertical-align: middle; width: 10%; align-items: center;">
+        <div style="display: table-cell; vertical-align: middle">{{ a.download + '%' }}</div>
+      </div>
 
     </div>
   </div>
