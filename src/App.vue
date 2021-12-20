@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <Upload></Upload>
+    <Download></Download>
   </div>
 </template>
 
 <script>
 
-import Upload from "@/components/upload/Upload";
+import Download from "@/components/download/Download";
 export default {
   name: 'App',
   data() {
@@ -15,7 +15,7 @@ export default {
     }
   },
   components: {
-    Upload
+    Download,
   },
   methods: {
   }
