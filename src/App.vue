@@ -1,23 +1,33 @@
 <template>
   <div id="app">
-    <Download></Download>
+    <component :is="currentPage === 1 ? uploadPage : currentPage === 2 ? downloadPage : indexPage" @changePage="changePage"></component>
   </div>
 </template>
 
 <script>
 
+import Index from "@/components/index/Index";
+import Upload from "@/components/upload/Upload";
 import Download from "@/components/download/Download";
+
 export default {
   name: 'App',
   data() {
     return {
-      fileList: null
+      uploadFiles: null,
+      currentPage: 0,
+      indexPage: Index,
+      uploadPage: Upload,
+      downloadPage: Download,
     }
   },
   components: {
-    Download,
+    Download, Upload, Index
   },
   methods: {
+    changePage(page) {
+      this.currentPage = page;
+    },
   }
 }
 </script>
@@ -28,6 +38,13 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 </style>
