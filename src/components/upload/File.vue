@@ -1,11 +1,11 @@
 <template>
-  <div ref="div-file" style="height: 50px; width: 100%; align-items: center; display: table; text-align: center" :class="mouseAbove ? 'mouse-above' : 'mouse-leave'">
-    <div style="display: table-cell; vertical-align: middle; width: 100%">
-      <div style="width: 10%; float: left">{{ index + 1 }}</div>
-      <div style="width: 60%; float: left">{{ f.name }}</div>
-      <div style="width: 15%; float: left">{{ calculateSize(f.size) }}</div>
-      <div style="width: 10%; float: left">{{ $t(f.status === 0 ? 'app.progress_waiting' : f.status === 1 ? 'upload.progress_uploading' : f.status === 2 ? 'app.progress_completed' : 'app.progress_failed') }}</div>
-      <div style="width: 5%; float: left">{{ f.upload + '%' }}</div>
+  <div class="div-root">
+    <div class="div-content">
+      <div class="div-5">{{ index + 1 }}</div>
+      <div class="div-60">{{ f.name }}</div>
+      <div class="div-15">{{ calculateSize(f.size) }}</div>
+      <div class="div-10">{{ $t(f.status === 0 ? 'app.progress_waiting' : f.status === 1 ? 'upload.progress_uploading' : f.status === 2 ? 'app.progress_completed' : 'app.progress_failed') }}</div>
+      <div class="div-10">{{ f.upload + '%' }}</div>
     </div>
   </div>
 </template>
@@ -18,7 +18,6 @@ export default {
   data() {
     return {
       file: null,
-      mouseAbove: false,
       SIZE_UNITS:  ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
     }
   },
@@ -37,17 +36,6 @@ export default {
   },
   mounted() {
     this.file = this.f;
-    const divFile = this.$refs["div-file"]
-    divFile.addEventListener('mouseover', e => {
-      e.stopPropagation();
-      e.preventDefault();
-      this.mouseAbove = true;
-    });
-    divFile.addEventListener('mouseleave', e => {
-      e.stopPropagation();
-      e.preventDefault();
-      this.mouseAbove = false;
-    });
   },
 }
 
@@ -56,22 +44,52 @@ export default {
 <!--suppress CssUnusedSymbol, CssUnknownProperty -->
 <style scoped>
 
-.mouse-above {
-  background-color: #E0E0E0;
-}
-
-.mouse-leave {
-  background-color: white;
-}
-
 div {
-
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+.div-root {
+  height: 50px;
+  width: 100vw;
+  align-items: center;
+  display: table;
+  text-align: center;
+  background-color: white;
+}
+
+.div-root:hover {
+  background-color: #E0E0E0;
+}
+
+.div-content {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100vw;
+}
+
+.div-5 {
+  width: 5vw;
+  float: left;
+}
+
+.div-10 {
+  width: 10vw;
+  float: left;
+}
+
+.div-60 {
+  width: 60vw;
+  float: left;
+}
+
+.div-15 {
+  width: 15vw;
+  float: left;
 }
 
 </style>

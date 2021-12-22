@@ -1,8 +1,8 @@
 <template>
-  <div style="background-color: #4285F4; align-items: center; display: table; text-align: center">
-    <div style="display: table-cell; vertical-align: middle; width: 100%">
-      <div ref="upload" :class="mouseAboveUpload ? 'mouse-above' : 'mouse-leave'" style="width: 10%; float: right" @click="upload">{{ $t('upload.btn_upload') }}</div>
-      <div ref="remove" :class="mouseAboveRemove ? 'mouse-above' : 'mouse-leave'" style="width: 10%; float: right" @click="remove">{{ $t('upload.btn_remove') }}</div>
+  <div class="div-footer-root">
+    <div class="div-table">
+      <div ref="upload" class="div-button" @click="upload">{{ $t('upload.btn_upload') }}</div>
+      <div ref="remove" class="div-button" @click="remove">{{ $t('upload.btn_remove') }}</div>
     </div>
   </div>
 </template>
@@ -15,8 +15,7 @@ export default {
   name: "Footer",
   data() {
     return {
-      mouseAboveUpload: false,
-      mouseAboveRemove: false,
+
     }
   },
   methods: {
@@ -68,31 +67,6 @@ export default {
     remove() {
       this.$emit('remove');
     }
-  },
-  mounted() {
-    const upload = this.$refs.upload;
-    upload.addEventListener('mouseover', e => {
-      e.stopPropagation();
-      e.preventDefault();
-      this.mouseAboveUpload = true;
-    });
-    upload.addEventListener('mouseleave', e => {
-      e.stopPropagation();
-      e.preventDefault();
-      this.mouseAboveUpload = false;
-    });
-
-    const remove = this.$refs.remove;
-    remove.addEventListener('mouseover', e => {
-      e.stopPropagation();
-      e.preventDefault();
-      this.mouseAboveRemove = true;
-    });
-    remove.addEventListener('mouseleave', e => {
-      e.stopPropagation();
-      e.preventDefault();
-      this.mouseAboveRemove = false;
-    });
   }
 }
 </script>
@@ -110,13 +84,28 @@ div {
   user-select: none;
 }
 
-.mouse-leave {
+.div-footer-root {
+  background-color: #4285F4;
+  align-items: center;
+  display: table;
+  text-align: center
+}
+
+.div-table {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100vw;
+}
+
+.div-button {
+  width: 10vw;
+  float: right;
   background-color: #4285F4;
   color: white;
   border: 1px solid #FFF;
 }
 
-.mouse-above {
+.div-button:hover {
   background-color: white;
   color: #4285F4;
   border: 1px solid white;

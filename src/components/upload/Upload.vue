@@ -1,16 +1,16 @@
 <template>
-  <div style="margin-bottom: 50px">
+  <div class="div-upload-root">
     <DropFile @dropFiles='updateFileList'></DropFile>
-    <div style="height: 50px; width: 100%; align-items: center; display: table; text-align: center">
-      <div style="display: table-cell; vertical-align: middle; width: 100%">
-        <div style="width: 10%; float: left">{{ $t('app.div_file_seq') }}</div>
-        <div style="width: 60%; float: left">{{ $t('app.div_file_name') }}</div>
-        <div style="width: 15%; float: left">{{ $t('app.div_file_size') }}</div>
-        <div style="width: 10%; float: left">{{ $t('app.div_file_status') }}</div>
-        <div style="width: 5%; float: left">{{ $t('app.div_file_progress') }}</div>
+    <div class="div-column-title-container">
+      <div class="div-column-title">
+        <div class="div-5">{{ $t('app.div_file_seq') }}</div>
+        <div class="div-60">{{ $t('app.div_file_name') }}</div>
+        <div class="div-15">{{ $t('app.div_file_size') }}</div>
+        <div class="div-10">{{ $t('app.div_file_status') }}</div>
+        <div class="div-10">{{ $t('app.div_file_progress') }}</div>
       </div>
     </div>
-    <FileList ref="fileList"></FileList>
+    <FileList ref="fileList" class="file-list"></FileList>
     <Footer ref="footer" class="footer" @remove="removeFiles" @upload="upload"></Footer>
   </div>
 </template>
@@ -50,12 +50,55 @@ export default {
 
 <style scoped>
 
+.div-upload-root {
+  width: 100vw;
+  margin-bottom: 50px;
+}
+
+.file-list {
+  width: 100vw;
+}
+
 .footer {
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 100%;
+  width: 100vw;
   height: 50px;
+}
+
+.div-column-title {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100vw;
+}
+
+.div-column-title-container {
+  height: 50px;
+  width: 100vw;
+  align-items: center;
+  display: table;
+  text-align: center
+}
+
+.div-60 {
+  width: 60vw;
+  float: left;
+}
+
+.div-10 {
+  width: 10vw;
+  float: left;
+}
+
+.div-15 {
+  width: 15vw;
+  float: left;
+}
+
+.div-5 {
+  width: 5vw;
+  float: left;
 }
 
 </style>

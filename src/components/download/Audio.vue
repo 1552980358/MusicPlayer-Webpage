@@ -1,15 +1,15 @@
 <template>
-  <div ref="div-audio" style="height: 60px; width: 100%; align-items: center; display: table; text-align: center" :class="mouseAbove ? 'mouse-above' : 'mouse-leave'" @click="download">
+  <div ref="div-audio" class="div-audio-root" @click="download">
 
-    <div style="height: 100%; display: table-cell; vertical-align: middle; width: 100%">
-      <div style="width: 50%; float: left">
+    <div class="div-container-root">
+      <div class="div-container-50">
 
         <!--suppress HtmlRequiredAltAttribute -->
-        <img ref="img" style="height: 40px; width: 40px; float: left; margin: 10px 10px 10px 10px" :src="imgSrc">
+        <img ref="img" :src="imgSrc">
 
-        <div style="height: 60px; float: left; display: table">
+        <div class="div-container-50-text-table">
 
-          <div style="display: table-cell; vertical-align: middle; align-items: center; text-align: left">
+          <div class="div-container-50-text-table-cell">
 
             <div>{{ a.title }}</div>
             <div>{{ a.artist + ' - ' + a.album }}</div>
@@ -20,21 +20,20 @@
 
       </div>
 
-
-      <div style="height: 60px; float: left; display: table; vertical-align: middle; width: 10%; align-items: center;">
-        <div style="display: table-cell; vertical-align: middle">{{ calculateDuration(a.duration) }}</div>
+      <div class="div-text-container-10">
+        <div class="div-text">{{ calculateDuration(a.duration) }}</div>
       </div>
 
-      <div style="height: 60px; float: left; display: table; vertical-align: middle; width: 15%; align-items: center;">
-        <div style="display: table-cell; vertical-align: middle">{{ calculateSize(a.size) }}</div>
+      <div class="div-text-container-15">
+        <div class="div-text">{{ calculateSize(a.size) }}</div>
       </div>
 
-      <div style="height: 60px; float: left; display: table; vertical-align: middle; width: 10%; align-items: center;">
-        <div style="display: table-cell; vertical-align: middle">{{ $t(a.status === 0 ? 'app.progress_waiting' : a.status === 1 ? 'download.progress_downloading' : a.status === 2 ? 'app.progress_completed' : 'app.progress_failed') }}</div>
+      <div class="div-text-container-10">
+        <div class="div-text">{{ $t(a.status === 0 ? 'app.progress_waiting' : a.status === 1 ? 'download.progress_downloading' : a.status === 2 ? 'app.progress_completed' : 'app.progress_failed') }}</div>
       </div>
 
-      <div style="height: 60px; float: left; display: table; vertical-align: middle; width: 10%; align-items: center;">
-        <div style="display: table-cell; vertical-align: middle">{{ a.download + '%' }}</div>
+      <div class="div-text-container-10">
+        <div class="div-text">{{ a.download + '%' }}</div>
       </div>
 
     </div>
@@ -51,7 +50,6 @@ export default {
   data() {
     return {
       audio: null,
-      mouseAbove: false,
       imgSrc: null,
       SIZE_UNITS:  ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
     }
@@ -133,19 +131,6 @@ export default {
   mounted() {
     this.audio = this.a;
     this.imgSrc = '/require?type=art&audio=' + this.a.id + '&album=' + this.a.albumId;
-  },
-  updated() {
-    const divAudio = this.$refs["div-audio"];
-    divAudio.addEventListener('mouseover', e => {
-      e.stopPropagation();
-      e.preventDefault();
-      this.mouseAbove = true;
-    });
-    divAudio.addEventListener('mouseleave', e => {
-      e.stopPropagation();
-      e.preventDefault();
-      this.mouseAbove = false;
-    });
   }
 }
 
@@ -154,12 +139,72 @@ export default {
 <!--suppress CssUnusedSymbol -->
 <style scoped>
 
-.mouse-above {
+.div-audio-root {
+  height: 60px;
+  width: 100vw;
+  align-items: center;
+  display: table;
+  text-align: center;
+  background-color: white;
+}
+
+.div-audio-root:hover {
   background-color: #E0E0E0;
 }
 
-.mouse-leave {
-  background-color: white;
+.div-container-root {
+  height: 60px;
+  display: table-cell;
+  vertical-align: middle;
+  width: 100vw
+}
+
+.div-container-50 {
+  width: 50vw;
+  float: left;
+}
+
+.div-container-50-text-table {
+  height: 60px;
+  float: left;
+  display: table;
+}
+
+.div-container-50-text-table-cell {
+  display: table-cell;
+  vertical-align: middle;
+  align-items: center;
+  text-align: left;
+}
+
+.div-text-container-10 {
+  height: 60px;
+  float: left;
+  display: table;
+  vertical-align: middle;
+  width: 10vw;
+  align-items: center;
+}
+
+.div-text-container-15 {
+  height: 60px;
+  float: left;
+  display: table;
+  vertical-align: middle;
+  width: 15vw;
+  align-items: center;
+}
+
+.div-text {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+img {
+  height: 40px;
+  width: 40px;
+  float: left;
+  margin: 10px 10px 10px 10px;
 }
 
 </style>

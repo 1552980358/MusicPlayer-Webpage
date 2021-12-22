@@ -1,7 +1,7 @@
 <template>
-  <div id="div-drop-area" ref="div-drop-area" :class="hasDrop || mouseAbove ? 'drop-above' : 'drop-empty'" style="height: 150px; width: 100%; align-items: center; display: table; cursor: pointer" @click="selectFiles">
-    <input ref="input-select" type="file" style="display: none" accept="audio/*" @change="inputFiles($event)">
-    <h1 style="text-align: center; display: table-cell; vertical-align: middle">{{ hasDrop ? $t('upload.text_drop_above') : $t('upload.text_drop_empty') }}</h1>
+  <div ref="div-drop-area" :class="hasDrop ? 'div-dropping' : 'div-drop'" @click="selectFiles">
+    <input ref="input-select" type="file" accept="audio/*" @change="inputFiles($event)">
+    <h1>{{ hasDrop ? $t('upload.text_drop_above') : $t('upload.text_drop_empty') }}</h1>
   </div>
 </template>
 
@@ -12,7 +12,6 @@ export default {
   data() {
     return {
       hasDrop: false,
-      mouseAbove: false,
       fileList: []
     }
   },
@@ -96,16 +95,6 @@ export default {
       e.preventDefault();
       this.hasDrop = true;
     })
-    dropArea.addEventListener('mouseover', e => {
-      e.stopPropagation();
-      e.preventDefault();
-      this.mouseAbove = true;
-    });
-    dropArea.addEventListener('mouseleave', e => {
-      e.stopPropagation();
-      e.preventDefault();
-      this.mouseAbove = false;
-    })
   }
 }
 </script>
@@ -113,23 +102,44 @@ export default {
 <!--suppress CssUnusedSymbol, CssUnknownProperty -->
 <style scoped>
 
-html, body, #div-drop-area {
-  width: 100%;
-}
-
-.drop-above {
-  background-color: #4285F4;
-  color: white;
-  border: 1px solid #FFF;
-}
-
-.drop-empty {
+.div-drop {
+  height: 150px;
+  width: 98vw;
+  margin: 1vw;
+  align-items: center;
+  display: table;
+  cursor: pointer;
   background-color: white;
   color: black;
   border: 1px solid #000;
 }
 
+.div-drop:hover {
+  background-color: #4285F4;
+  color: white;
+  border: 1px solid #FFF;
+}
+
+.div-dropping {
+  height: 150px;
+  width: 98vw;
+  margin: 1vw;
+  align-items: center;
+  display: table;
+  cursor: pointer;
+  background-color: #4285F4;
+  color: white;
+  border: 1px solid #FFF;
+}
+
+input {
+  display: none
+}
+
 h1 {
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
