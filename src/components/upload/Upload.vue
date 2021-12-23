@@ -11,7 +11,7 @@
       </div>
     </div>
     <FileList ref="fileList" class="file-list"></FileList>
-    <Footer ref="footer" class="footer" @remove="removeFiles" @upload="upload"></Footer>
+    <Footer ref="footer" class="footer" @remove="removeFiles" @upload="upload" @back="back"></Footer>
   </div>
 </template>
 
@@ -43,6 +43,9 @@ export default {
     },
     removeFiles() {
       this.updateFileList([])
+    },
+    back() {
+      this.$emit('changePage', 0);
     }
   }
 }
@@ -64,7 +67,7 @@ export default {
   left: 0;
   bottom: 0;
   width: 100vw;
-  height: 50px;
+  height: 48px;
 }
 
 .div-column-title {

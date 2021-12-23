@@ -1,5 +1,9 @@
 <template>
   <div class="div-footer-root">
+    <div class="div-back" @click="back">
+      <!--suppress HtmlRequiredAltAttribute -->
+      <img src="../../assets/back.svg">
+    </div>
     <div class="div-table">
       <div ref="upload" class="div-button" @click="upload">{{ $t('upload.btn_upload') }}</div>
       <div ref="remove" class="div-button" @click="remove">{{ $t('upload.btn_remove') }}</div>
@@ -15,7 +19,6 @@ export default {
   name: "Footer",
   data() {
     return {
-
     }
   },
   methods: {
@@ -66,7 +69,10 @@ export default {
     },
     remove() {
       this.$emit('remove');
-    }
+    },
+    back() {
+      this.$emit('back')
+    },
   }
 }
 </script>
@@ -88,7 +94,15 @@ div {
   background-color: #4285F4;
   align-items: center;
   display: table;
-  text-align: center
+  text-align: center;
+  height: 48px;
+}
+
+.div-back {
+  display: table-cell;
+  vertical-align: middle;
+  height: 24px;
+  width: 24px;
 }
 
 .div-table {
@@ -103,12 +117,17 @@ div {
   background-color: #4285F4;
   color: white;
   border: 1px solid #FFF;
+  margin-right: 8px;
 }
 
 .div-button:hover {
   background-color: white;
   color: #4285F4;
   border: 1px solid white;
+}
+
+img {
+  margin-left: 8px;
 }
 
 </style>
