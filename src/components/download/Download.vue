@@ -12,17 +12,19 @@
     <div v-for="audio in audioList" :key="audio.id">
       <Audio :a="audio"></Audio>
     </div>
+    <Footer class="footer" @back="back"></Footer>
   </div>
 </template>
 
 <script>
 
 import Audio from "@/components/download/Audio";
+import Footer from "@/components/download/Footer";
 import axios from "axios";
 
 export default {
   name: "Download",
-  components: {Audio},
+  components: {Footer, Audio},
   data() {
     return {
       audioList: null,
@@ -56,6 +58,11 @@ export default {
         });
       })
     })
+  },
+  methods: {
+    back() {
+      this.$emit('changePage', 0);
+    }
   }
 }
 
@@ -65,6 +72,7 @@ export default {
 
 .div-download-root {
   width: 100vw;
+  margin-bottom: 48px;
 }
 
 .div-table-container {
@@ -94,6 +102,14 @@ export default {
 .div-15 {
   width: 15vw;
   float: left;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 48px;
 }
 
 </style>
