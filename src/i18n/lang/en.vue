@@ -19,6 +19,7 @@ module.exports = {
     'btn_upload': 'Upload',
     'btn_remove': 'Remove All',
     'progress_uploading': 'Uploading',
+    'btn_remove_selected': 'Remove Selected'
   },
 
   download: {

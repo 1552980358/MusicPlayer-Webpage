@@ -19,6 +19,7 @@ module.exports = {
     'btn_upload': '上传',
     'btn_remove': '删除全部',
     'progress_uploading': '上传中',
+    'btn_remove_selected': '移除所选',
   },
 
   download: {
