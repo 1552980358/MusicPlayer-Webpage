@@ -33,7 +33,8 @@ export default {
               name: file.name,
               size: file.size,
               upload: 0,
-              status: 0
+              status: 0,
+              isSelected: false,
             });
           } else {
             console.log('File \'' + file.name + '\' exists, ignored.');
@@ -65,7 +66,8 @@ export default {
             name: file.name,
             size: file.size,
             upload: 0,
-            status: 0
+            status: 0,
+            isSelected: false,
           });
         } else {
           console.log('File \'' + file.name + '\' exists, ignored.');
