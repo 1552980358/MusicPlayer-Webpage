@@ -1,12 +1,13 @@
 <template>
   <div class="div-footer-root">
-    <div class="div-back" @click="back">
+    <div class="div-back" @click="$emit('back')">
       <!--suppress HtmlRequiredAltAttribute -->
       <img src="../../assets/back.svg">
     </div>
     <div class="div-table">
-      <div ref="upload" class="div-button" @click="upload">{{ $t('upload.btn_upload') }}</div>
-      <div ref="remove" class="div-button" @click="remove">{{ $t('upload.btn_remove') }}</div>
+      <div class="div-button" @click="$emit('upload')">{{ $t('upload.btn_upload') }}</div>
+      <div class="div-button" @click="$emit('removeAllFiles')">{{ $t('upload.btn_remove') }}</div>
+      <div class="div-button" @click="$emit('removeSelected')">{{ $t('upload.btn_remove_selected') }}</div>
     </div>
   </div>
 </template>
@@ -22,9 +23,6 @@ export default {
     }
   },
   methods: {
-    upload() {
-      this.$emit('upload')
-    },
     uploadFile(files) {
       if (files.length === 0) {
         return;
@@ -66,12 +64,6 @@ export default {
           file.status = -1;
         })
       });
-    },
-    remove() {
-      this.$emit('remove');
-    },
-    back() {
-      this.$emit('back')
     },
   }
 }

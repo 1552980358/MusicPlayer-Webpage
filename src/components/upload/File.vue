@@ -1,5 +1,5 @@
 <template>
-  <div class="div-root">
+  <div :class="f.isSelected ? 'div-file-root-selected' : 'div-file-root'" @click="f.isSelected = !f.isSelected">
     <div class="div-content">
       <div class="div-5">{{ index + 1 }}</div>
       <div class="div-60">{{ f.name }}</div>
@@ -53,17 +53,28 @@ div {
   user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
-.div-root {
+.div-file-root {
   height: 50px;
   width: 100vw;
   align-items: center;
   display: table;
   text-align: center;
   background-color: white;
+  color: black;
 }
 
-.div-root:hover {
+.div-file-root:hover {
   background-color: #E0E0E0;
+}
+
+.div-file-root-selected {
+  height: 50px;
+  width: 100vw;
+  align-items: center;
+  display: table;
+  text-align: center;
+  background-color: #4285F4;
+  color: white;
 }
 
 .div-content {

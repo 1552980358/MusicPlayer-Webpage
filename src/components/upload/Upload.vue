@@ -1,6 +1,6 @@
 <template>
   <div class="div-upload-root">
-    <DropFile @dropFiles='updateFileList'></DropFile>
+    <DropFile ref="drop-file" @dropFiles='updateFileList'></DropFile>
     <div class="div-column-title-container">
       <div class="div-column-title">
         <div class="div-5">{{ $t('app.div_file_seq') }}</div>
@@ -11,7 +11,7 @@
       </div>
     </div>
     <FileList ref="fileList" class="file-list"></FileList>
-    <Footer ref="footer" class="footer" @remove="removeFiles" @upload="upload" @back="back"></Footer>
+    <Footer ref="footer" class="footer" @removeAllFiles="updateFileList([])" @upload="upload" @back="back" @removeSelected="removeSelected"></Footer>
   </div>
 </template>
 
@@ -37,15 +37,34 @@ export default {
     updateFileList(files) {
       this.fileList = files;
       this.$refs.fileList.updateFileList(files);
+      this.$refs["drop-file"].fileList = files;
     },
     upload() {
       this.$refs.footer.uploadFile(this.fileList);
     },
-    removeFiles() {
-      this.updateFileList([])
-    },
     back() {
       this.$emit('changePage', 0);
+    },
+    findSelected() {
+      let found = false;
+      let index = 0;
+      this.fileList.some(file => {
+        if (file.isSelected) {
+          found = true;
+          return true;
+        }
+        index++;
+      });
+      if (found) {
+        return index;
+      }
+      return -1;
+    },
+    removeSelected() {
+      let index;
+      while ((index = this.findSelected()) !== -1) {
+        this.fileList.splice(index, 1);
+      }
     }
   }
 }
