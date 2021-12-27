@@ -12,7 +12,7 @@
     <div class="div-list" v-for="audio in audioList" :key="audio.id">
       <Audio :a="audio" class="div-audio"></Audio>
     </div>
-    <Footer class="footer" @back="$emit('changePage', 0)" @downloadSelected="downloadSelected"></Footer>
+    <Footer class="footer" @back="back" @downloadSelected="downloadSelected"></Footer>
   </div>
 </template>
 
@@ -31,6 +31,10 @@ export default {
     }
   },
   mounted() {
+    window.addEventListener('popstate', this.back, false);
+    window.history.pushState('forward', null, 'download');
+    window.history.forward(1);
+
     const headers = {
       'Content-Type': 'multipart/form-data',
       'Access-Control-Allow-Origin': window.location.origin,
@@ -58,9 +62,12 @@ export default {
           isSelected: false,
         });
       })
-    })
+    });
   },
   methods: {
+    back() {
+      this.$emit('changePage', 0);
+    },
     downloadSelected() {
 
       const headers = {
@@ -107,6 +114,9 @@ export default {
         }
       })
     },
+  },
+  destroyed() {
+    window.removeEventListener('popstate', this.back, false);
   }
 }
 
