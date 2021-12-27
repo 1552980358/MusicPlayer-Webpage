@@ -1,6 +1,6 @@
 <template>
   <div class="div-footer-root">
-    <div class="div-back" @click="back">
+    <div class="div-back" @click="$emit('back')">
       <!--suppress HtmlRequiredAltAttribute -->
       <img src="../../assets/back.svg">
     </div>
@@ -11,9 +11,7 @@
 export default {
   name: "Footer",
   methods: {
-    back() {
-      this.$emit('back')
-    },
+
   },
 }
 </script>
