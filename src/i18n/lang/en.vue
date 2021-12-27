@@ -26,6 +26,7 @@ module.exports = {
     'div_name': 'Name',
     'div_duration': 'Duration',
     'progress_downloading': 'Downloading',
+    'div_download_selected': 'Download Selected Audio',
   }
 
 }

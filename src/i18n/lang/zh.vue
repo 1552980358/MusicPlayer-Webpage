@@ -26,6 +26,7 @@ module.exports = {
     'div_name': '歌曲',
     'div_duration': '时长',
     'progress_downloading': '下载中',
+    'div_download_selected': '下载选中歌曲',
   }
 
 }
