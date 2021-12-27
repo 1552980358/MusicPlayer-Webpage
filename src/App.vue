@@ -47,4 +47,9 @@ html, body {
   padding: 0 !important;
 }
 
+component {
+  width: 100vw;
+  max-width: 100%;
+}
+
 </style>

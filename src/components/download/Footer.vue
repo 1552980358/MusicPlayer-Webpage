@@ -21,8 +21,11 @@ export default {
 .div-footer-root {
   height: 48px;
   width: 100vw;
+  max-width: 100%;
   background-color: #4285F4;
   display: table;
+  align-items: center;
+  vertical-align: middle;
 }
 
 .div-back {

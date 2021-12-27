@@ -9,8 +9,8 @@
         <div class="div-10">{{ $t('app.div_file_progress') }}</div>
       </div>
     </div>
-    <div v-for="audio in audioList" :key="audio.id">
-      <Audio :a="audio"></Audio>
+    <div class="div-list" v-for="audio in audioList" :key="audio.id">
+      <Audio :a="audio" class="div-audio"></Audio>
     </div>
     <Footer class="footer" @back="$emit('changePage', 0)"></Footer>
   </div>
@@ -70,13 +70,14 @@ export default {
 
 .div-download-root {
   width: 100vw;
+  max-width: 100%;
   margin-bottom: 48px;
 }
 
 .div-table-container {
   height: 50px;
   width: 100vw;
-  align-items: center;
+  max-width: 100%;
   display: table;
   text-align: center
 }
@@ -85,21 +86,30 @@ export default {
   display: table-cell;
   vertical-align: middle;
   width: 100vw;
+  max-width: 100%;
 }
 
 .div-50 {
   width: 50vw;
   float: left;
+  max-width: 50%;
 }
 
 .div-10 {
   width: 10vw;
   float: left;
+  max-width: 10%;
 }
 
 .div-15 {
   width: 15vw;
   float: left;
+  max-width: 15%;
+}
+
+.div-audio {
+  width: 100vw;
+  max-width: 100%;
 }
 
 .footer {
@@ -108,6 +118,7 @@ export default {
   bottom: 0;
   width: 100vw;
   height: 48px;
+  max-width: 100%;
 }
 
 </style>

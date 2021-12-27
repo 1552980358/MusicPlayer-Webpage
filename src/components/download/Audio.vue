@@ -20,7 +20,7 @@
 
       </div>
 
-      <div class="div-text-container-10">
+      <div class="div-text-container-15">
         <div class="div-text">{{ calculateDuration(a.duration) }}</div>
       </div>
 
@@ -37,12 +37,11 @@
       </div>
 
     </div>
+
   </div>
 </template>
 
 <script>
-
-import axios from "axios";
 
 export default {
   name: "Audio",
@@ -85,48 +84,6 @@ export default {
       let tmpDuration = Number(duration);
       return this.prefix2Digit((tmpDuration / 60000)) + ':' + this.prefix2Digit((tmpDuration / 1000 % 60)) + '.' + this.prefix3Digit((tmpDuration % 1000));
     },
-    download() {
-
-      const headers = {
-        'Content-Type': 'multipart/form-data',
-        'Access-Control-Allow-Origin': window.location.origin,
-        'Access-Control-Allow-Methods': 'POST,GET,OPTIONS',
-        'Access-Control-Allow-Headers': '*',
-        'Access-Control-Max-Age': '0',
-      };
-
-      axios({
-        url: '/download?id=' + this.audio.id,
-        headers: headers,
-        responseType: 'blob',
-        onDownloadProgress: e => {
-          this.audio.status = 1;
-          const percentage = (e.loaded * 100 / e.total).toFixed(0);
-          console.log('Download ' + this.audio.title + ' => ' + percentage + '%');
-          this.audio.download = percentage;
-        }
-      }).then(res => {
-        this.audio.status = 2;
-
-        const { data, headers } = res
-        let ext = String(headers['Content-Type']).replace('audio/', '.');
-        const fileName = this.audio.artist + ' - ' + this.audio.title + ext;
-        let url = window.URL.createObjectURL(new Blob([data], {type: headers['content-type']}));
-        let dom = document.createElement('a');
-        dom.href = url;
-        dom.download = fileName;
-        dom.style.display = 'none';
-        document.body.appendChild(dom);
-        dom.click();
-        dom.parentNode.removeChild(dom);
-        window.URL.revokeObjectURL(url);
-
-        console.log('Download ' + this.audio.title + ' with response code: ' + res.status);
-      }).catch(e => {
-        console.log('Download ' + this.audio.title + ' with exception: ' + e);
-        this.audio.status = -1;
-      });
-    }
   },
   mounted() {
     this.audio = this.a;
@@ -142,6 +99,7 @@ export default {
 .div-audio-root {
   height: 60px;
   width: 100vw;
+  max-width: 100%;
   align-items: center;
   display: table;
   text-align: center;
@@ -156,12 +114,15 @@ export default {
   height: 60px;
   display: table-cell;
   vertical-align: middle;
-  width: 100vw
+  width: 100vw;
+  max-width: 100%;
 }
 
 .div-container-50 {
   width: 50vw;
+  max-width: 50%;
   float: left;
+  display: table-cell;
 }
 
 .div-container-50-text-table {
@@ -183,6 +144,7 @@ export default {
   display: table;
   vertical-align: middle;
   width: 10vw;
+  max-width: 10%;
   align-items: center;
 }
 
@@ -192,11 +154,13 @@ export default {
   display: table;
   vertical-align: middle;
   width: 15vw;
+  max-width: 15%;
   align-items: center;
 }
 
 .div-text {
   display: table-cell;
+  width: 100%;
   vertical-align: middle;
 }
 
@@ -204,7 +168,7 @@ img {
   height: 40px;
   width: 40px;
   float: left;
-  margin: 10px 10px 10px 10px;
+  margin: 10px;
 }
 
 </style>
