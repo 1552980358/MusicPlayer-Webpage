@@ -65,7 +65,15 @@ export default {
       while ((index = this.findSelected()) !== -1) {
         this.fileList.splice(index, 1);
       }
-    }
+    },
+  },
+  mounted() {
+    window.addEventListener('popstate', this.back, false);
+    window.history.pushState('forward', null, 'upload');
+    window.history.forward(1);
+  },
+  destroyed() {
+    window.removeEventListener('popstate', this.back, false);
   }
 }
 </script>
