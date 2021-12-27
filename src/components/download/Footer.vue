@@ -2,7 +2,7 @@
   <div class="div-footer-root">
     <div class="div-back" @click="$emit('back')">
       <!--suppress HtmlRequiredAltAttribute -->
-      <img src="../../assets/back.svg">
+      <div class="div-back-img"></div>
     </div>
     <div class="div-table">
       <div class="div-button" @click="$emit('downloadSelected')">{{ $t('download.div_download_selected') }}</div>
@@ -34,8 +34,22 @@ export default {
 .div-back {
   display: table-cell;
   vertical-align: middle;
-  height: 24px;
-  width: 24px;
+  height: 48px;
+  width: 48px;
+  max-height: 48px;
+  max-width: 48px;
+}
+
+.div-back-img {
+  width: 32px;
+  height: 32px;
+  display: block;
+  margin-left: 12px;
+  background-image: url("~@/assets/back.svg");
+}
+
+.div-back-img:hover {
+  background-image: url("~@/assets/back-hover.svg");
 }
 
 .div-table {
@@ -68,10 +82,6 @@ div {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-img {
-  margin-left: 8px;
 }
 
 </style>
