@@ -4,6 +4,9 @@
       <!--suppress HtmlRequiredAltAttribute -->
       <img src="../../assets/back.svg">
     </div>
+    <div class="div-table">
+      <div class="div-button" @click="$emit('downloadSelected')">{{ $t('download.div_download_selected') }}</div>
+    </div>
   </div>
 </template>
 
@@ -33,6 +36,38 @@ export default {
   vertical-align: middle;
   height: 24px;
   width: 24px;
+}
+
+.div-table {
+  display: table-cell;
+  width: 100vw;
+  vertical-align: middle;
+}
+
+.div-button {
+  width: 10vw;
+  float: right;
+  background-color: #4285F4;
+  color: white;
+  border: 1px solid white;
+  margin-right: 8px;
+  text-align: center;
+}
+
+.div-button:hover {
+  background-color: white;
+  color: #4285F4;
+  border: 1px solid white;
+}
+
+div {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  /*noinspection CssUnknownProperty*/
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 img {

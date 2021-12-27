@@ -1,5 +1,5 @@
 <template>
-  <div ref="div-audio" class="div-audio-root" @click="download">
+  <div :class="a.isSelected ? 'div-audio-root-selected' : 'div-audio-root'" @click="a.isSelected = !a.isSelected">
 
     <div class="div-container-root">
       <div class="div-container-50">
@@ -104,10 +104,22 @@ export default {
   display: table;
   text-align: center;
   background-color: white;
+  color: black;
 }
 
 .div-audio-root:hover {
   background-color: #E0E0E0;
+}
+
+.div-audio-root-selected {
+  height: 60px;
+  width: 100vw;
+  max-width: 100%;
+  align-items: center;
+  display: table;
+  text-align: center;
+  background-color: #4285F4;
+  color: white;
 }
 
 .div-container-root {
