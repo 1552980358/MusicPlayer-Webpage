@@ -12,7 +12,7 @@
     <div v-for="audio in audioList" :key="audio.id">
       <Audio :a="audio"></Audio>
     </div>
-    <Footer class="footer" @back="back"></Footer>
+    <Footer class="footer" @back="$emit('changePage', 0)"></Footer>
   </div>
 </template>
 
@@ -60,9 +60,7 @@ export default {
     })
   },
   methods: {
-    back() {
-      this.$emit('changePage', 0);
-    }
+
   }
 }
 
