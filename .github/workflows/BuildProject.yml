@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: '14'
       - name: Install vue-cli
-        run: npn install --global vue-cli
+        run: npm install --global vue-cli
       - name: Install axios
         run: npm install --global axios
       - name: Checkout the code
@@ -35,7 +35,7 @@ jobs:
         with:
           node-version: '14'
       - name: Install vue-cli
-        run: npn install --global vue-cli
+        run: npm install --global vue-cli
       - name: Install axios
         run: npm install --global axios
       - name: Checkout the code
@@ -54,7 +54,7 @@ jobs:
         with:
           node-version: '14'
       - name: Install vue-cli
-        run: npn install --global vue-cli
+        run: npm install --global vue-cli
       - name: Install axios
         run: npm install --global axios
       - name: Checkout the code
