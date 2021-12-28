@@ -28,6 +28,21 @@ export default {
     changePage(page) {
       this.currentPage = page;
     },
+  },
+  mounted() {
+    let parts = document.location.toString().split('/').filter(item => item !== '');
+    let endParts = parts[parts.length - 1];
+    if (endParts.includes('?')) {
+      endParts = endParts.substring(0, endParts.indexOf('?'));
+    }
+    switch (endParts) {
+      case 'upload':
+        this.currentPage = 1;
+        break;
+      case 'download':
+        this.currentPage = 2;
+        break;
+    }
   }
 }
 </script>
