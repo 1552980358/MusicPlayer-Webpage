@@ -30,6 +30,28 @@ export default {
     },
   },
   mounted() {
+    switch (navigator.language.toString().substring(0, 2)) {
+      case 'zh-SG':
+      case 'zh-CN':
+      case 'zh-Hans':
+        this.$i18n.locale = 'zh-Hans';
+        break;
+      case 'zh-HK':
+      case 'zh-MO':
+      case 'zh-TW':
+      case 'zh-Hant':
+        this.$i18n.locale = 'zh-Hant';
+        break;
+      case 'en-AU':
+      case 'en-CA':
+      case 'en-MY':
+      case 'en-NZ':
+      case 'en-GB':
+      case 'en-US':
+        this.$i18n.locale = 'en-US';
+        break;
+    }
+
     let parts = document.location.toString().split('/').filter(item => item !== '');
     let endParts = parts[parts.length - 1];
     if (endParts.includes('?')) {
