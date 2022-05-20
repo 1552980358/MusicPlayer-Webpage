@@ -1,92 +1,26 @@
 <template>
-  <div id="app">
-    <component :is="currentPage === 1 ? uploadPage : currentPage === 2 ? downloadPage : indexPage" @changePage="changePage"></component>
-  </div>
+  <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
 <script>
-
-import Index from "@/components/index/Index";
-import Upload from "@/components/upload/Upload";
-import Download from "@/components/download/Download";
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  data() {
-    return {
-      uploadFiles: null,
-      currentPage: 0,
-      indexPage: Index,
-      uploadPage: Upload,
-      downloadPage: Download,
-    }
-  },
   components: {
-    Download, Upload, Index
-  },
-  methods: {
-    changePage(page) {
-      this.currentPage = page;
-    },
-  },
-  mounted() {
-    switch (navigator.language.toString().substring(0, 2)) {
-      case 'zh-SG':
-      case 'zh-CN':
-      case 'zh-Hans':
-        this.$i18n.locale = 'zh-Hans';
-        break;
-      case 'zh-HK':
-      case 'zh-MO':
-      case 'zh-TW':
-      case 'zh-Hant':
-        this.$i18n.locale = 'zh-Hant';
-        break;
-      case 'en-AU':
-      case 'en-CA':
-      case 'en-MY':
-      case 'en-NZ':
-      case 'en-GB':
-      case 'en-US':
-        this.$i18n.locale = 'en-US';
-        break;
-    }
-
-    let parts = document.location.toString().split('/').filter(item => item !== '');
-    let endParts = parts[parts.length - 1];
-    if (endParts.includes('?')) {
-      endParts = endParts.substring(0, endParts.indexOf('?'));
-    }
-    switch (endParts) {
-      case 'upload':
-        this.currentPage = 1;
-        break;
-      case 'download':
-        this.currentPage = 2;
-        break;
-    }
+    HelloWorld
   }
 }
 </script>
 
 <style>
-
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin: 0 !important;
-  padding: 0 !important;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
-
-html, body {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-component {
-  width: 100vw;
-  max-width: 100%;
-}
-
 </style>
