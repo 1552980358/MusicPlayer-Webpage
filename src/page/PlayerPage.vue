@@ -9,7 +9,7 @@
 
     <div id="player-div-content-root-right">
       <div id="player-div-metadata-container">
-        <div>
+        <div id="player-div-metadata-box">
           <div id="player-div-title" class="player-div-metadata" :style="{ 'color': primaryTextColor }">{{ metadata.title }}</div>
           <div id="player-div-artist" class="player-div-metadata" :style="{ 'color': secondaryTextColor }">{{ metadata.artist }}</div>
           <div id="player-div-album" class="player-div-metadata" :style="{ 'color': secondaryTextColor }">{{ metadata.album }}</div>
@@ -76,6 +76,10 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#player-div-metadata-box {
+  width: 100%;
 }
 
 #player-div-title {
