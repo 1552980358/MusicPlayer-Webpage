@@ -31,8 +31,8 @@ export default {
       secondaryTextColor: '#A4A4A4',
 
       // Metadata
-      metadata: { title: 'abcdefghijklmnopqrstuvwxyz', artist: '456', album: '789' },
-      imgArtUrl: '',
+      metadata: { title: '', artist: '', album: '' },
+      imgArtUrl: require('../assets/icon/svg/ic_round_audiotrack.svg'),
     };
   },
 }
