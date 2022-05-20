@@ -79,16 +79,20 @@ export default {
 }
 
 #player-div-title {
+  font-size: 24px;
 }
 
 #player-div-artist {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 #player-div-album {
 }
 
 .player-div-metadata {
-  text-align:center;
+  font-size: 18px;
+  text-align: center;
 }
 
 </style>
