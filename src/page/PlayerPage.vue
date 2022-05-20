@@ -26,7 +26,7 @@ export default {
   data() {
     return {
       // Colors
-      backgroundColor: '#6200EE',
+      backgroundColor: '#6750A4',
       primaryTextColor: '#FFF',
       secondaryTextColor: '#A4A4A4',
 
