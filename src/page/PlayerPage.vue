@@ -83,7 +83,14 @@ export default {
 }
 
 #player-div-title {
+  width: 90%;
   font-size: 24px;
+  font-weight: bold;
+  margin-left: 5%;
+  margin-right: 5%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 #player-div-artist {
@@ -95,8 +102,14 @@ export default {
 }
 
 .player-div-metadata {
+  width: 90%;
   font-size: 18px;
+  margin-left: 16px;
+  margin-right: 16px;
+  overflow: hidden;
   text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 </style>
