@@ -3,7 +3,7 @@
 
     <div id="player-div-content-root-left">
       <div id="player-div-img-container">
-        <img id="player-img-art" :src="imgArtUrl"  alt="" />
+        <img id="player-img-art" draggable="false" :src="imgArtUrl"  alt="" />
       </div>
     </div>
 
@@ -17,14 +17,18 @@
       </div>
     </div>
 
+    <BottomControlBar :play-state="playState" @openSideBar="openSideBar"></BottomControlBar>
   </div>
 
   <SideBar ref="side-bar"></SideBar>
 </template>
 
 <script>
+import BottomControlBar from "@/components/player/BottomControlBar";
+import SideBar from "@/components/player/SideBar";
 export default {
   name: "WebPlayer",
+  components: {SideBar, BottomControlBar},
   data() {
     return {
       // Colors
@@ -35,6 +39,8 @@ export default {
       // Metadata
       metadata: { title: '', artist: '', album: '' },
       imgArtUrl: require('../assets/icon/svg/ic_round_audiotrack.svg'),
+
+      playState: false,
     };
   },
   methods: {
@@ -46,6 +52,16 @@ export default {
 </script>
 
 <style scoped>
+
+div, img {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
 
 #player-div-background {
   width: 100vw;
