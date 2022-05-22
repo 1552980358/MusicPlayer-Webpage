@@ -1,5 +1,5 @@
 <template>
-  <div id="player-div-background" :style="{ 'background-color': backgroundColor }">
+  <div id="player-div-background">
 
     <div id="player-div-content-root-left">
       <div id="player-div-img-container">
@@ -10,9 +10,9 @@
     <div id="player-div-content-root-right">
       <div id="player-div-metadata-container">
         <div id="player-div-metadata-box">
-          <div id="player-div-title" class="player-div-metadata" :style="{ 'color': primaryTextColor }">{{ metadata.title }}</div>
-          <div id="player-div-artist" class="player-div-metadata" :style="{ 'color': secondaryTextColor }">{{ metadata.artist }}</div>
-          <div id="player-div-album" class="player-div-metadata" :style="{ 'color': secondaryTextColor }">{{ metadata.album }}</div>
+          <div id="player-div-metadata-title" class="player-div-metadata">{{ metadata.title }}</div>
+          <div id="player-div-metadata-artist" class="player-div-metadata">{{ metadata.artist }}</div>
+          <div id="player-div-metadata-album" class="player-div-metadata">{{ metadata.album }}</div>
         </div>
       </div>
     </div>
@@ -43,6 +43,7 @@ export default {
 #player-div-background {
   width: 100vw;
   height: 100vh;
+  background-color: v-bind(backgroundColor);
 }
 
 #player-div-content-root-left {
@@ -82,34 +83,29 @@ export default {
   width: 100%;
 }
 
-#player-div-title {
-  width: 90%;
-  font-size: 24px;
-  font-weight: bold;
-  margin-left: 5%;
-  margin-right: 5%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-#player-div-artist {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-#player-div-album {
-}
-
 .player-div-metadata {
   width: 90%;
-  font-size: 18px;
-  margin-left: 16px;
-  margin-right: 16px;
+  margin-left: 5%;
+  margin-right: 5%;
   overflow: hidden;
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+#player-div-metadata-title {
+  font-size: 24px;
+  color: v-bind(primaryTextColor);
+}
+
+#player-div-metadata-artist {
+  font-size: 18px;
+  color: v-bind(secondaryTextColor);
+}
+
+#player-div-metadata-album {
+  font-size: 18px;
+  color: v-bind(secondaryTextColor);
 }
 
 </style>
