@@ -18,6 +18,8 @@
     </div>
 
   </div>
+
+  <SideBar ref="side-bar"></SideBar>
 </template>
 
 <script>
@@ -34,6 +36,11 @@ export default {
       metadata: { title: '', artist: '', album: '' },
       imgArtUrl: require('../assets/icon/svg/ic_round_audiotrack.svg'),
     };
+  },
+  methods: {
+    openSideBar() {
+      this.$refs["side-bar"].open();
+    },
   },
 }
 </script>
