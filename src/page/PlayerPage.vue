@@ -39,7 +39,7 @@ export default {
 
       // Metadata
       metadata: { title: '', artist: '', album: '' },
-      imgArtUrl: require('../assets/icon/svg/ic_round_audiotrack.svg'),
+      imgArtUrl: require('../assets/icon/svg/ic_round_audiotrack_white.svg'),
 
       playState: false,
     };
