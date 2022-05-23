@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <BottomControlBar :play-state="playState" @openSideBar="openSideBar"></BottomControlBar>
+    <BottomControlBar :play-state="playState" @openSideBar="openSideBar" :color="buttonColor"></BottomControlBar>
   </div>
 
   <SideBar ref="side-bar"></SideBar>
@@ -35,6 +35,7 @@ export default {
       backgroundColor: '#6750A4',
       primaryTextColor: '#FFF',
       secondaryTextColor: '#A4A4A4',
+      buttonColor: '#FFF',
 
       // Metadata
       metadata: { title: '', artist: '', album: '' },
