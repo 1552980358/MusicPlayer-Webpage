@@ -13,6 +13,7 @@ export default {
     return {
       openState: false,
       barWidth: '0',
+      audioList: [ { id: '1', title: 't', artistName: 'Art', albumTitle: 'Alb', imageUrl: null }],
     };
   },
   methods: {
@@ -40,7 +41,7 @@ export default {
   right: 0;
   background-color: transparent;
   overflow-x: hidden;
-  transition: 500ms ease;
+  transition: 400ms ease;
 }
 
 .side-bar-div-content-mask {
