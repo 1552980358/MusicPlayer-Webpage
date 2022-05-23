@@ -34,7 +34,7 @@ import IcRoundSkipNext from "@/components/player/image/ic-round-skip-next";
 import IcRoundQueueMusic from "@/components/player/image/ic-round-queue-music";
 
 export default {
-  name: "BottomControlBar",
+  name: "bottom-control-bar",
   components: {IcRoundQueueMusic, IcRoundSkipNext, IcRoundSkipPrev},
   props: [ 'playState', 'metadata', 'color' ],
   data() {
