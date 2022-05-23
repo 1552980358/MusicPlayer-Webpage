@@ -1,12 +1,13 @@
 <template>
-  <div id="audio-item-div-root" v-on:dblclick="play">
-    <div id="audio-item-div-metadata-container">
-      <div class="audio-item-div-metadata">{{audio.title}}</div>
-      <div class="audio-item-div-metadata">{{audio.artistName}} - {{audio.albumTitle}}</div>
+  <div class="audio-item-div-root" v-on:dblclick="play">
+    <div class="audio-item-div-metadata-container">
+      <div class="audio-item-div-metadata-title">{{audio.title}}</div>
+      <div class="audio-item-div-metadata-subtitle">{{audio.artistName}} - {{audio.albumTitle}}</div>
     </div>
   </div>
 </template>
 
+<!--suppress JSUnusedGlobalSymbols -->
 <script>
 export default {
   name: "audio-item",
@@ -31,9 +32,8 @@ export default {
 
 <style scoped>
 
-#audio-item-div-root {
+.audio-item-div-root {
   width: 100%;
-  padding: 8px 16px;
 
   transition: background-color 200ms ease;
   -moz-transition: background-color 200ms ease;
@@ -41,10 +41,9 @@ export default {
   -o-transition: background-color 200ms ease;
 }
 
-#audio-item-div-root:hover {
+.audio-item-div-root:hover {
   width: 100%;
-  padding: 8px 16px;
-  background-color: gray;
+  background-color: lightgray;
 
   transition: background-color 200ms ease;
   -moz-transition: background-color 200ms ease;
@@ -52,8 +51,24 @@ export default {
   -o-transition: background-color 200ms ease;
 }
 
-.audio-item-div-metadata {
+.audio-item-div-metadata-container {
+  width: 100%;
+}
 
+.audio-item-div-metadata-title {
+  width: 90%;
+  padding: 8px 5% 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.audio-item-div-metadata-subtitle {
+  width: 100%;
+  padding: 0 5% 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 </style>
