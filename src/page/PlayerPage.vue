@@ -17,10 +17,10 @@
       </div>
     </div>
 
-    <BottomControlBar :play-state="playState" @openSideBar="openSideBar" :color="buttonColor"></BottomControlBar>
+    <bottom-control-bar :play-state="playState" @openSideBar="openSideBar" :color="buttonColor"></bottom-control-bar>
   </div>
 
-  <SideBar ref="side-bar"></SideBar>
+  <side-bar ref="side-bar"></side-bar>
 </template>
 
 <script>
