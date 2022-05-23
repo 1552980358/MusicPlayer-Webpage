@@ -13,7 +13,7 @@ export default {
     return {
       openState: false,
       barWidth: '0',
-      audioList: [ { id: '1', title: 't', artistName: 'Art', albumTitle: 'Alb', imageUrl: null }],
+      audioList: null,
     };
   },
   methods: {
