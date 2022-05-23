@@ -5,9 +5,7 @@
       <div id="bottom-control-bar-div-control-container">
 
         <div class="bottom-control-bar-div-control-prev-next-container">
-          <img draggable="false"
-               :src="require('@/assets/icon/svg/ic_round_skip_previous.svg')"
-               alt="" />
+          <ic-round-skip-prev class="bottom-control-bar-ic" :color="color" />
         </div>
 
         <div id="bottom-control-bar-div-control-play-pause-container">
@@ -17,17 +15,13 @@
         </div>
 
         <div class="bottom-control-bar-div-control-prev-next-container">
-          <img draggable="false"
-               :src="require('@/assets/icon/svg/ic_round_skip_next.svg')"
-               alt="" />
+          <ic-round-skip-next class="bottom-control-bar-ic" :color="color" />
         </div>
 
       </div>
 
       <div class="bottom-control-bar-div-queue-container" v-on:click="openSideBar">
-        <img draggable="false"
-             :src="require('@/assets/icon/svg/ic_round_queue_music.svg')"
-             alt="" />
+        <ic-round-queue-music class="bottom-control-bar-ic" :color="color" />
       </div>
 
     </div>
@@ -35,9 +29,14 @@
 </template>
 
 <script>
+import IcRoundSkipPrev from "@/components/player/image/ic-round-skip-prev";
+import IcRoundSkipNext from "@/components/player/image/ic-round-skip-next";
+import IcRoundQueueMusic from "@/components/player/image/ic-round-queue-music";
+
 export default {
   name: "BottomControlBar",
-  props: [ 'playState', 'metadata' ],
+  components: {IcRoundQueueMusic, IcRoundSkipNext, IcRoundSkipPrev},
+  props: [ 'playState', 'metadata', 'color' ],
   data() {
     return {
     };
@@ -83,6 +82,11 @@ img {
   float: left;
   height: 36px;
   width: 36px;
+}
+
+.bottom-control-bar-ic {
+  width: 100%;
+  height: 100%;
 }
 
 #bottom-control-bar-div-control-play-pause-container {
