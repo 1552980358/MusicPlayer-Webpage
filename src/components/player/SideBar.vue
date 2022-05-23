@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "SideBar",
+  name: "side-bar",
   data() {
     return {
       openState: false,
