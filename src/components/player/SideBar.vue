@@ -30,6 +30,10 @@ export default {
       openState: false,
       barWidth: '0',
       audioList: null,
+      playlistList: null,
+
+      playlistHeight: '100%',
+      currentPlaylist: null,
     };
   },
   methods: {
@@ -42,6 +46,28 @@ export default {
     close() {
       this.updateState(false);
     },
+    play(id) {
+      console.log(id);
+    },
+    openPlaylist(playlist) {
+      this.currentPlaylist = playlist;
+      getResource('player/playlist?id=' + playlist.id, res => {
+        const audioList = [];
+        res.data['list'].forEach(jsonObject => {
+          audioList.push({
+            id: jsonObject['id'],
+            title: jsonObject['title'],
+            artist: jsonObject['artist'],
+            artistName: jsonObject['artistName'],
+            album: jsonObject['album'],
+            albumTitle: jsonObject['albumTitle'],
+            duration: jsonObject['duration'],
+          });
+        });
+        this.audioList = audioList;
+      });
+      this.playlistHeight = '0';
+    }
   },
 }
 </script>
