@@ -56,8 +56,8 @@ export default {
 }
 
 .audio-item-div-metadata-title {
-  width: 90%;
-  padding: 8px 5% 0;
+  width: 100%;
+  padding: 16px 5% 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -65,7 +65,7 @@ export default {
 
 .audio-item-div-metadata-subtitle {
   width: 100%;
-  padding: 0 5% 8px;
+  padding: 0 16px 8px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
