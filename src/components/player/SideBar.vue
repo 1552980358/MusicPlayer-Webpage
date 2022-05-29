@@ -51,7 +51,7 @@ export default {
     },
     openPlaylist(playlist) {
       this.currentPlaylist = playlist;
-      getResource('player/playlist?id=' + playlist.id, res => {
+      getResource('player/playlist/' + playlist.id, res => {
         const audioList = [];
         res.data['list'].forEach(jsonObject => {
           audioList.push({
